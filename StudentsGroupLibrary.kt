@@ -58,20 +58,17 @@ fun countChck(number: String): Boolean {
     val lst = groupDb.find(Group::number eq number).toList()
     val pg2 = lst.map{it.podgroup2.size}.toString()
     val pg1 = lst.map{it.podgroup1.size}.toString()
-    println("$pg1, $pg2")
     return pg1<=pg2
 }
 
 //Добавить группу
 fun addGroup() {
-    println("Создание группы")
     groupDb.insertOne(Group(inpGrp()))
-    prettyPrintCursor(groupDb.find().sort("{'number':1}"))
+
 }
 
 //Удалить группу
 fun deleteGroup() {
-    println("Удаление группы")
     val number = inpGrp()
     groupDb.deleteOne(Group::number eq number)
 }
@@ -86,7 +83,6 @@ fun addStudentInGroup(number: String, student: String) {
         groupDb.updateOne(Group::number eq number,
             addToSet(Group::podgroup2, Student(student)), upsert())
     }
-    prettyPrintCursor(groupDb.find().sort("{'number':1}"))
 }
 
 //Удалить студента из группы
@@ -101,7 +97,6 @@ fun deleteStudentInGroup(number:String, student: String) {
 }
 //Изменить информацию о студенте
 fun renameStudent() {
-    println("Изменение информации о студенте")
     val number = inpGrp()
     val student = inpSt()
     val chk = init().contains(Student(student))
@@ -115,12 +110,11 @@ fun renameStudent() {
         groupDb.updateOne(Group::number eq number,
             push(Group::podgroup2, Student(studentNew)))
     }
-    prettyPrintCursor(groupDb.find().sort("{'number':1}"))
 }
 
 //Перевести студента
 fun transfer() {
-    println("Перевод студента \nОткуда")
+    println("Откуда")
     val number = inpGrp()
     val student = inpSt()
     println("Куда")
@@ -148,7 +142,6 @@ fun import() {
             groupDb.updateOne(Group::number eq group,
                 addToSet(Group::podgroup2, Student(name, surname)), upsert())
     }
-    prettyPrintCursor(groupDb.find().sort("{'number':1}"))
 }
 
 fun export() {

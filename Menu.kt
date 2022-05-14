@@ -22,28 +22,42 @@ fun main() {
                 prettyPrintCursor(groupDb.find().sort("{'number':1}"))
             }
             "2" -> {
-                println("ДОБАВЛЕНИЕ ГРУПП")
+                println("ДОБАВЛЕНИЕ ГРУППЫ")
                 addGroup()
+                prettyPrintCursor(groupDb.find().sort("{'number':1}"))
             }
             "3" -> {
+                println("ДОБАВЛЕНИЕ СТУДЕНТА В ГРУППУ")
                 addStudentInGroup(inpGrp(), inpSt())
+                prettyPrintCursor(groupDb.find().sort("{'number':1}"))
             }
             "4" -> {
+                println("ИЗМЕНЕНИЕ ИНФОРМАЦИИ О СТУДЕНТЕ")
                 renameStudent()
+                prettyPrintCursor(groupDb.find().sort("{'number':1}"))
             }
             "5" -> {
+                println("ПЕРЕВОД СТУДЕНТА")
                 transfer()
+                prettyPrintCursor(groupDb.find().sort("{'number':1}"))
             }
             "6" -> {
+                println("УДАЛЕНИЕ СТУДЕНТА ИЗ ГРУППЫ")
                 deleteStudentInGroup(inpGrp(), inpSt())
+                prettyPrintCursor(groupDb.find().sort("{'number':1}"))
             }
             "7" -> {
+                println("УДАЛЕНИЕ ГРУППЫ")
                 deleteGroup()
+                prettyPrintCursor(groupDb.find().sort("{'number':1}"))
             }
             "8" -> {
+                println("ИМПОРТ СПИСКА ГРУПП")
                 import()
+                prettyPrintCursor(groupDb.find().sort("{'number':1}"))
             }
             "9" -> {
+                println("ЭКСПОРТ СПИСКА ГРУПП")
                 export()
             }
             "e" -> {
